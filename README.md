@@ -1,183 +1,85 @@
-# 通过MXNet/Gluon来动手学习深度学习
+# 动手学深度学习（Dive into Deep Learning，D2L.ai）
 
-主页在 [https://zh.gluon.ai/](https://zh.gluon.ai/)
+[![Build Status](http://ci.d2l.ai/job/d2l-zh/job/master/badge/icon)](http://ci.d2l.ai/job/d2l-zh/job/master/)
 
-请使用 [https://discuss.gluon.ai](https://discuss.gluon.ai) 讨论或报告问题
+[本书网址：zh.d2l.ai](https://zh.d2l.ai/) |  [如何安装和使用书中源代码](https://zh.d2l.ai/chapter_prerequisite/install.html)
 
-## 如何贡献
+<h5 align="center"><i>理解深度学习的最佳方法是学以致用。</i></h5>
 
-所有notebook是用markdown格式存储，这样方便merge改动。jupyter可以通过notedown来直接使用markdown，[参考这里安装](./chapter_preface/install.md#使用notedown插件来读写github源文件)
+<p align="center">
+  <img width="200"  src="img/frontpage/eq.jpg">
+  <img width="200"  src="img/frontpage/figure.jpg">
+  <img width="200"  src="img/frontpage/code.jpg">
+  <img width="200"  src="img/frontpage/notebook.gif">
+</p>
 
-build服务器在 http://ci.mxnet.io 。这台服务器有两块Nvidia M60。
+本开源项目代表了我们的一种尝试：我们将教给读者概念、背景知识和代码；我们将在同一个地方阐述剖析问题所需的批判性思维、解决问题所需的数学知识，以及实现解决方案所需的工程技能。
 
-所有markdown文件需要在提交前清除output，它们会在服务器上重新执行生成结果。所以需要保证每个notebook执行不要太久，目前限制是20min。
+我们的目标是创建一个为实现以下目标的统一资源：
+1. 所有人均可在网上免费获取；
+1. 提供足够的技术深度，从而帮助读者实际成为深度学习应用科学家：既理解数学原理，又能够实现并不断改进方法；
+1. 包含可运行的代码，为读者展示如何在实际中解决问题。这样不仅直接将数学公式对应成实际代码，而且可以修改代码、观察结果并及时获取经验；
+1. 允许我们和整个社区不断快速迭代内容，从而紧跟仍在高速发展的深度学习领域；
+1. 由包含有关技术细节问答的论坛作为补充，使大家可以相互答疑并交换经验。
 
-在本地可以如下build html（需要GPU支持）
+<h5 align="center">将本书（中英文版）用作教材或参考书的大学</h5>
+<p align="center">
+  <img width="400"  src="http://en.d2l.ai.s3-website-us-west-2.amazonaws.com/_images/map.png">
+</p>
 
-```bash
-conda env update -f build/build.yml
-source activate gluon_zh_docs
-make html
+如果本书对你有帮助，请Star (★) 本仓库或引用本书的英文版：
+
+```
+@book{zhang2020dive,
+    title={Dive into Deep Learning},
+    author={Aston Zhang and Zachary C. Lipton and Mu Li and Alexander J. Smola},
+    note={\url{https://d2l.ai}},
+    year={2020}
+}
 ```
 
-生成的html会在`_build/html`。
+## 本书的第二版
 
-如果没有改动notebook里面源代码，所以不想执行notebook，可以使用
+虽然纸质书第一版已经出版，但深度学习领域依然在迅速发展。为了得到来自更广泛的英文开源社区的帮助，从而提升本书质量，本书的第二版正在用英文写。当英文版完成并改进后，我们再把它搬回中文版。
 
-```
-make html EVAL=0
-```
+目前，英文版已超过160节（中文版共96节），例如增加了理论背景（如优化收敛分析）、硬件设计（如参数服务器）、全新篇章（如注意力机制、推荐系统、深度学习的数学、生成对抗网络）、应用种类（如自然语言推理）、模型种类（如Transformer、BERT）等，并优化重组了大量章节（如将自然语言处理篇章按从预训练表征、到模型设计、再到下游应用重构）。
 
-但这样生成的html将不含有输出结果。
+欢迎关注本书[第二版的英文开源项目](https://github.com/d2l-ai/d2l-en)。
 
-## 编译PDF版本
+## 中英文教学资源
 
-编译pdf版本需要xelatex，和思源字体。在Ubuntu可以这样安装
+加州大学伯克利分校 2019 年春学期 [*Introduction to Deep Learning* 课程](http://courses.d2l.ai/berkeley-stat-157/index.html)教材（同时提供含教学视频地址的[中文版课件](https://github.com/d2l-ai/berkeley-stat-157/tree/master/slides-zh)）。
 
-```bash
-sudo apt-get install texlive-full
-```
+## 学术界推荐
 
-```bash
-wget https://github.com/adobe-fonts/source-han-sans/raw/release/OTF/SourceHanSansHWSC.zip
-wget https://github.com/adobe-fonts/source-han-serif/raw/release/OTF/SourceHanSerifSC_EL-M.zip
-unzip SourceHanSansHWSC.zip
-unzip SourceHanSerifSC_EL-M.zip
-sudo mv SourceHanSansHWSC SourceHanSerifSC_EL-M /usr/share/fonts/opentype/
-sudo fc-cache -f -v
-```
+> <p>"Dive into this book if you want to dive into deep learning!"</p>
+> <b>&mdash; 韩家炜，ACM 院士、IEEE 院士，美国伊利诺伊大学香槟分校计算机系 Michael Aiken Chair 教授</b>
 
-这时候可以通过 `fc-list :lang=zh` 来查看安装的中文字体。
+> <p>"This is a highly welcome addition to the machine learning literature."</p>
+> <b>&mdash; Bernhard Schölkopf，ACM 院士、德国国家科学院院士，德国马克斯•普朗克研究所智能系统院院长</b>
 
-然后可以编译了
+> <p>"书中代码可谓‘所学即所用’。"</p>
+> <b>&mdash; 周志华，ACM 院士、IEEE 院士、AAAS 院士，南京大学计算机科学与技术系主任</b>
 
-```bash
-make latex
-cd _build/latex
-xelatex -interaction nonstopmode gluon_tutorials_zh.tex
-```
+> <p>"这本书可以帮助深度学习实践者快速提升自己的能力。"</p>
+> <b>&mdash; 张潼，ASA 院士、IMS 院士，香港科技大学计算机系和数学系教授</b>
 
+## 工业界推荐
 
-## Terminology 中英术语对照表
+> <p>"一本优秀的深度学习教材，值得任何想了解深度学习何以引爆人工智能革命的人关注。"</p>
+> <b>&mdash; 黄仁勋，NVIDIA创始人 & CEO</b>
 
-action, 动作
+> <p>"《动手学深度学习》是最适合工业界研发工程师学习的。我毫无保留地向广大的读者们强烈推荐。"</p>
+> <b>&mdash; 余凯，地平线公司创始人 & CEO</b>
 
-adversarial learning, 对抗学习
+> <p>"强烈推荐这本书！我特别赞赏这种手脑一体的学习方式。"</p>
+> <b>&mdash; 漆远，蚂蚁金服副总裁、首席AI科学家</b>
 
-agent, 智能体
+> <p>"《动手学深度学习》是一本很容易让学习者上瘾的书。"</p>
+> <b>&mdash; 沈强，将门创投创始合伙人</b>
 
-attribute space, 属性空间
+## 贡献
 
-attribute value, 属性值
+感谢[社区贡献者们](https://github.com/d2l-ai/d2l-zh/graphs/contributors)为每一位读者改进这本开源书。
 
-attribute, 属性
-
-binary classification, 二分类
-
-classification, 分类
-
-cluster, 簇
-
-clustering, 聚类
-
-confidence, 确信度
-
-contextual bandit problem, 情境式赌博机问题
-
-covariate shift, 协变量转移
-
-credit assignment problem, 信用分配问题
-
-cross-entropy, 交叉熵
-
-data set, 数据集
-
-dimensionality, 维数
-
-distribution, 分布
-
-einforcement learning, 强化学习
-
-example, 样例
-
-feature vector, 特征向量
-
-feature, 特征
-
-generalization, 泛化
-
-generative adversarial networks, 生成对抗网络
-
-ground-truth, 真相、真实
-
-hypothesis, 假设
-
-independent and identically distributed(i.i.d), 独立同分布
-
-instance, 示例
-
-label space, 标注空间
-
-label, 标注
-
-learing algorithm, 学习算法
-
-learned model, 学得模型
-
-learner, 学习器
-
-learning, 学习
-
-machine translation, 机器翻译
-
-Markov Decision Process, 马尔可夫决策过程
-
-model, 模型
-
-multi-armed bandit problem, 多臂赌博机问题
-
-multi-class classification, 多分类
-
-negative class, 反类
-
-offline learning, 离线学习
-
-positive class, 正类
-
-prediction, 预测
-
-principal component analysis, 主成分分析
-
-regression, 回归
-
-reinforcement learning, 强化学习
-
-representation learning, 表征学习
-
-sample space, 样本空间
-
-sample, 样本
-
-sepecilization, 特化
-
-sequence learning, 序列学习
-
-subspace estimation, 子空间估计
-
-supervised learning, 监督学习
-
-testing smaple, 测试样本
-
-testing, 测试
-
-time step, 时间步长
-
-training data, 训练数据
-
-training sample, 训练样本
-
-training set, 训练集
-
-training, 训练
-
-unsupervised learning, 无监督学习
+[如何贡献](https://zh.d2l.ai/chapter_appendix/how-to-contribute.html) | [致谢](https://zh.d2l.ai/chapter_preface/preface.html#致谢) | [讨论或报告问题](https://discuss.gluon.ai) | [其他](INFO.md)
